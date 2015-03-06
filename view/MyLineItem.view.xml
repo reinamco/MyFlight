@@ -1,0 +1,68 @@
+<mvc:View
+	controllerName="sap.ui.demo.myFiori.view.MyLineItem"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:c="sap.ui.core" 
+	xmlns="sap.m">
+	<Page
+		class="sapUiFioriObjectPage"
+		title="{i18n>LineItemTitle}">
+		<l:Grid
+			defaultSpan="L12 M12 S12"
+			width="auto">
+			<l:content>
+				<f:SimpleForm
+					id="idAddBookingForm2"
+					minWidth="800"
+					maxContainerCols="2"
+					editable="true"
+					layout="ResponsiveGridLayout"
+					title="New Booking"
+					labelSpanL="3"
+					labelSpanM="3"
+					emptySpanL="4"
+					emptySpanM="4"
+					columnsL="1"
+					columnsM="1"
+					class="editableForm">
+					<f:content>
+						<!-- Basic info -->
+						<c:Title text="Basic info" />
+						<Label text="Flight Info" />
+						<Text text="{title}" />
+						<Label text="On Date" />
+						<Text text="{
+                        	path: 'fldate',
+                           	formatter: 'sap.ui.demo.myFiori.util.Formatter.date'
+                        }" />
+						<Label text="Price" />
+						<Text text="{price}" />
+						<Label text="Currency" />
+                        <Text text="{currency}" />
+                        <Label text="Book ID" />
+                        <Text text="{bookid}" id="idBookID" />
+						<c:Title text="Required info" />
+						<Label text="Customer ID" />
+						<Input value="{customid}" id="idCustomerID" />
+						<Label text="Travel Agency Number" />
+						<Input value="{agencynum}" id="idAgency" />
+						<Label text="Name of the Passenger" />
+						<Input value="{passname}" id="idPassenger" />
+					</f:content>
+				</f:SimpleForm>
+			</l:content>
+		</l:Grid>
+        <footer>
+			<Bar>
+				<contentRight>
+				    <Button text="{i18n>addBookingButton}" type="Emphasized" press="onBooking" id="Booking"/>
+				    <Button text="{i18n>addCancelBookingButton}" press="onCancelBooking" id="CancelBooking" visible = "false"/>
+					<Button text="{i18n>addTemplateUpdateButton}" press="onTemplateUpdate" id="TemplateUpdate"/>
+					<Button text="{i18n>addTemplateDeleteButton}" press="onTemplateDelete" id="TemplateDelete" />
+					<Button text="{i18n>addBacklButton}" press="onCancel"/>
+				</contentRight>
+			</Bar>
+		</footer>
+	</Page>
+</mvc:View>

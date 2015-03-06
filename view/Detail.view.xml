@@ -1,0 +1,87 @@
+<core:View
+	controllerName="sap.ui.demo.myFiori.view.Detail"
+	xmlns="sap.m"
+	xmlns:form="sap.ui.layout.form"
+	xmlns:core="sap.ui.core" >
+	<Page
+		title="{i18n>DetailTitle}"
+		class="sapUiFioriObjectPage"
+		showNavButton="{device>/isPhone}"
+		navButtonPress="handleNavButtonPress" >
+        <ObjectHeader 
+               title="{title}" 
+               number="{distance}" 
+               numberUnit="{distid}" > 
+               <attributes> 
+                      <ObjectAttribute text="{fromto}" />  
+               </attributes>        
+        </ObjectHeader>
+        <IconTabBar 
+               expanded="{device>/isNoPhone}" >
+               <items> 
+                     <IconTabFilter icon="sap-icon://supplier"> 
+                     		<Table items="{MyBooking}" >
+              					<columns> 
+                    				 <Column> 
+                           			 	<header><Label text="Customer ID" /></header> 
+                     				 </Column> 
+                   				 	 <Column hAlign="Center" > 
+                            			<header><Label text="Passenger Name" /></header> 
+                     				 </Column>
+                    				 <Column> 
+                           			 	<header><Label text="Travel Agency Number" /></header> 
+                     				 </Column>                   				
+                    				 <Column> 
+                           			 	<header><Label text="Flight date" /></header> 
+                     				 </Column> 
+                    				 <Column> 
+                           			 	<header><Label text="Book ID" /></header> 
+                     				 </Column>                      				
+             					</columns>
+             					<ColumnListItem id = "MyLineItem" type="Navigation" press="handleMyLineItemSelect" > 
+                     				<cells> 
+                           				<ObjectIdentifier title="{customid}" /> 
+                           				<Text text="{passname}" />
+                           				<Text text="{agencynum}" />
+                           				<Text text="{
+                           					path: 'fldate',
+                           					formatter: 'sap.ui.demo.myFiori.util.Formatter.date'
+                         				  }"/>
+                         				<Text text="{bookid}" />                        				
+                     				</cells> 
+              					</ColumnListItem>
+       						</Table>
+                     </IconTabFilter>
+              </items> 
+        </IconTabBar>
+        <Table 
+              headerText="{i18n>LineItemTableHeader}" 
+              items="{Scheduled}" > 
+              <columns> 
+                     <Column> 
+                             <header><Label text="Flight date" /></header> 
+                     </Column>
+                     <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" > 
+                             <header><Label text="Plane Type" /></header>
+                     </Column> 
+                     <Column hAlign="Right" > 
+                             <header><Label text="Currency" /></header> 
+                     </Column> 
+              </columns>
+              <ColumnListItem type="Navigation" press="handleLineItemPress">
+                     <cells> 
+                           <ObjectIdentifier title="{
+                           		path: 'fldate',
+                           		formatter: 'sap.ui.demo.myFiori.util.Formatter.date'
+                           }" /> 
+                           <Text text="{planetype}"/> 
+                           <ObjectNumber number="{price}" numberUnit="{currency}" />
+                     </cells> 
+              </ColumnListItem> 
+        </Table>
+        <footer> 
+               <Bar>         
+               </Bar> 
+        </footer>
+	</Page>
+</core:View>
